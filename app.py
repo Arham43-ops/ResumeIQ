@@ -1,5 +1,5 @@
 ﻿"""
-Smart Resume AI - Main Application
+ResumeIQ - Main Application
 """
 import time
 from PIL import Image
@@ -39,7 +39,7 @@ import datetime
 
 # Set page config at the very beginning
 st.set_page_config(
-    page_title="Smart Resume AI",
+    page_title="ResumeIQ",
     page_icon="🚀",
     layout="wide"
 )
@@ -146,7 +146,7 @@ class ResumeApp:
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #4CAF50;
+            background: #00d4ff;
             border-radius: 4px;
         }
 
@@ -156,7 +156,7 @@ class ResumeApp:
 
         /* Global Styles */
         .main-header {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, #00d4ff 0%, #45a049 100%);
             padding: 2rem;
             border-radius: 15px;
             margin-bottom: 2rem;
@@ -208,7 +208,7 @@ class ResumeApp:
         .template-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border-color: #4CAF50;
+            border-color: #00d4ff;
         }
 
         .template-card::before {
@@ -224,7 +224,7 @@ class ResumeApp:
 
         .template-icon {
             font-size: 3rem;
-            color: #4CAF50;
+            color: #00d4ff;
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
@@ -265,14 +265,14 @@ class ResumeApp:
         }
 
         .feature-icon {
-            color: #4CAF50;
+            color: #00d4ff;
             margin-right: 0.8rem;
             font-size: 1.1rem;
         }
 
         /* Button Styles */
         .action-button {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, #00d4ff 0%, #45a049 100%);
             color: white;
             padding: 1rem 2rem;
             border-radius: 50px;
@@ -323,7 +323,7 @@ class ResumeApp:
             color: white;
             margin-bottom: 1.5rem;
             padding-bottom: 0.8rem;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 2px solid #00d4ff;
         }
 
         .form-group {
@@ -348,7 +348,7 @@ class ResumeApp:
         }
 
         .form-input:focus {
-            border-color: #4CAF50;
+            border-color: #00d4ff;
             box-shadow: 0 0 0 2px rgba(76,175,80,0.2);
             outline: none;
         }
@@ -363,17 +363,17 @@ class ResumeApp:
 
         .skill-tag {
             background: rgba(76,175,80,0.1);
-            color: #4CAF50;
+            color: #00d4ff;
             padding: 0.6rem 1.2rem;
             border-radius: 50px;
-            border: 1px solid #4CAF50;
+            border: 1px solid #00d4ff;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .skill-tag:hover {
-            background: #4CAF50;
+            background: #00d4ff;
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76,175,80,0.2);
@@ -397,7 +397,7 @@ class ResumeApp:
             fill: none;
             stroke-width: 8;
             stroke-linecap: round;
-            stroke: #4CAF50;
+            stroke: #00d4ff;
             transform-origin: 50% 50%;
             transition: all 0.3s ease;
         }
@@ -547,7 +547,7 @@ class ResumeApp:
         """Render the dashboard page"""
         self.dashboard_manager.render_dashboard()
 
-        st.toast("Check out these repositories: [Awesome Hacking](https://github.com/Hunterdii/Awesome-Hacking)", icon="ℹ️")
+        st.toast("Check out these repositories: [StockEasy](https://github.com/Arham43-ops/StockEasy)", icon="ℹ️")
 
 
     def render_empty_state(self, icon, message):
@@ -991,7 +991,7 @@ class ResumeApp:
                 print(f"Full traceback: {traceback.format_exc()}")
                 st.error(f"❌ Error preparing resume data: {str(e)}")
 
-        st.toast("Check out these repositories: [30-Days-Of-Rust](https://github.com/Hunterdii/30-Days-Of-Rust)", icon="ℹ️")
+        st.toast("Check out these repositories: [A.I.V.A Chatbot](https://github.com/Arham43-ops/A.I.V.A-Chatbot)", icon="ℹ️")
 
     def render_about(self):
         """Render the about page"""
@@ -1038,7 +1038,7 @@ class ResumeApp:
                     margin: 0 auto 1.5rem;
                     display: block;
                     object-fit: cover;
-                    border: 4px solid #4CAF50;
+                    border: 4px solid #00d4ff;
                 }
 
                 .profile-name {
@@ -1049,7 +1049,7 @@ class ResumeApp:
 
                 .profile-title {
                     font-size: 1.2rem;
-                    color: #4CAF50;
+                    color: #00d4ff;
                     margin-bottom: 1.5rem;
                 }
 
@@ -1062,11 +1062,11 @@ class ResumeApp:
 
                 .social-link {
                     font-size: 2rem;
-                    color: #4CAF50;
+                    color: #00d4ff;
                     transition: all 0.3s ease;
                     padding: 0.5rem;
                     border-radius: 50%;
-                    background: rgba(76, 175, 80, 0.1);
+                    background: rgba(0, 212, 255, 0.1);
                     width: 60px;
                     height: 60px;
                     display: flex;
@@ -1077,9 +1077,9 @@ class ResumeApp:
 
                 .social-link:hover {
                     transform: translateY(-5px);
-                    background: #4CAF50;
+                    background: #00d4ff;
                     color: white;
-                    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+                    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
                 }
 
                 .bio-text {
@@ -1101,7 +1101,7 @@ class ResumeApp:
 
                 .vision-icon {
                     font-size: 2.5rem;
-                    color: #4CAF50;
+                    color: #00d4ff;
                     margin-bottom: 1rem;
                 }
 
@@ -1126,7 +1126,7 @@ class ResumeApp:
 
                 .feature-icon {
                     font-size: 2.5rem;
-                    color: #4CAF50;
+                    color: #00d4ff;
                     margin-bottom: 1rem;
                 }
 
@@ -1146,7 +1146,7 @@ class ResumeApp:
         # Hero Section
         st.markdown("""
             <div class="hero-section">
-                <h1 class="hero-title">About Smart Resume AI</h1>
+                <h1 class="hero-title">About ResumeIQ</h1>
                 <p class="hero-subtitle">A powerful AI-driven platform for optimizing your resume</p>
             </div>
         """, unsafe_allow_html=True)
@@ -1154,26 +1154,26 @@ class ResumeApp:
         # Profile Section
         st.markdown(f"""
             <div class="profile-section">
-                <img src="{image_base64 if image_base64 else 'https://avatars.githubusercontent.com/Hunterdii'}"
-                     alt="Het Patel"
+                <img src="{image_base64 if image_base64 else 'https://avatars.githubusercontent.com/Arham43-ops'}"
+                     alt="Arham Topiwala"
                      class="profile-image"
-                     onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Hunterdii';">
-                <h2 class="profile-name">Het Patel (Hunterdii)</h2>
-                <p class="profile-title">Full Stack Developer & AI/ML Enthusiast</p>
+                     onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Arham43-ops';">
+                <h2 class="profile-name">Arham Topiwala(AsyncPrime)</h2>
+                <p class="profile-title">Web Designer | AI Enthusiast | Freelancer</p>
                 <div class="social-links">
-                    <a href="https://github.com/Hunterdii" class="social-link" target="_blank">
+                    <a href="https://github.com/Arham43-ops" class="social-link" target="_blank">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" class="social-link" target="_blank">
+                    <a href="https://www.linkedin.com/in/arham43-ops/" class="social-link" target="_blank">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:hunterdii9879@gmail.com" class="social-link" target="_blank">
+                    <a href="mailto:topiwalaarham@gmail.com" class="social-link" target="_blank">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
                 <p class="bio-text">
-                    Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning.
-                    I created Smart Resume AI to revolutionize how job seekers approach their career journey.
+                    Hello! I'm a passionate Full Stack Developer with expertise in optimizing Artificial Intelligence.
+                    I created ResumeIQ to revolutionize how job seekers approach their career journey.
                     With my background in both software development and AI, I've designed this platform to
                     provide intelligent, data-driven insights for resume optimization.
                 </p>
@@ -1189,7 +1189,7 @@ class ResumeApp:
                 <i class="fas fa-lightbulb vision-icon"></i>
                 <h2 class="vision-title">Our Vision</h2>
                 <p class="vision-text">
-                    "Smart Resume AI represents my vision of democratizing career advancement through technology.
+                    "ResumeIQ represents my vision of democratizing career advancement through technology.
                     By combining cutting-edge AI with intuitive design, this platform empowers job seekers at
                     every career stage to showcase their true potential and stand out in today's competitive job market."
                 </p>
@@ -1229,7 +1229,7 @@ class ResumeApp:
             </div>
         """, unsafe_allow_html=True)
 
-        st.toast("Check out these repositories: [Iriswise](https://github.com/Hunterdii/Iriswise)", icon="ℹ️")
+        st.toast("Check out these repositories: [ Flipkart Clone ](https://github.com/Arham43-ops/Flipkart-Clone  )", icon="ℹ️")
 
     def render_analyzer(self):
         """Render the resume analyzer page"""
@@ -1425,7 +1425,7 @@ class ResumeApp:
                                     height: 150px;
                                     border-radius: 50%;
                                     background: conic-gradient(
-                                        #4CAF50 0% {score}%,
+                                        #00d4ff 0% {score}%,
                                         #2c2c2c {score}% 100%
                                     );
                                     display: flex;
@@ -1459,7 +1459,7 @@ class ResumeApp:
                             </div>
                         """.format(
                             score=analysis['ats_score'],
-                            color='#4CAF50' if analysis['ats_score'] >= 80 else '#FFA500' if analysis[
+                            color='#00d4ff' if analysis['ats_score'] >= 80 else '#FFA500' if analysis[
                                 'ats_score'] >= 60 else '#FF4444',
                             status='Excellent' if analysis['ats_score'] >= 80 else 'Good' if analysis[
                                 'ats_score'] >= 60 else 'Needs Improvement'
@@ -1509,7 +1509,7 @@ class ResumeApp:
                         if analysis.get('contact_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📞 Contact Information</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>📞 Contact Information</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1524,7 +1524,7 @@ class ResumeApp:
                         if analysis.get('summary_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📝 Professional Summary</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>📝 Professional Summary</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1540,7 +1540,7 @@ class ResumeApp:
                             'skills_suggestions') or analysis['keyword_match']['missing_skills']:
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>🎯 Skills</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>🎯 Skills</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1563,7 +1563,7 @@ class ResumeApp:
                         if analysis.get('experience_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>💼 Work Experience</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>💼 Work Experience</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1578,7 +1578,7 @@ class ResumeApp:
                         if analysis.get('education_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>🎓 Education</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>🎓 Education</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1593,7 +1593,7 @@ class ResumeApp:
                         if analysis.get('format_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📄 Formatting</h3>
+                                    <h3 style='color: #00d4ff; margin-bottom: 10px;'>📄 Formatting</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -2447,7 +2447,7 @@ class ResumeApp:
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="color: #ffffff;"><strong>AI Model:</strong> {model_used}</p>
                                                 <p style="color: #ffffff;"><strong>Overall Score:</strong> {resume_score}/100 - {"Excellent" if resume_score >= 80 else "Good" if resume_score >= 60 else "Needs Improvement"}</p>
-                                                {f'<p style="color: #4CAF50;"><strong>✓ Custom Job Description Used</strong></p>' if st.session_state.get('used_custom_job_desc', False) else ''}
+                                                {f'<p style="color: #00d4ff;"><strong>✓ Custom Job Description Used</strong></p>' if st.session_state.get('used_custom_job_desc', False) else ''}
                                     </div>
                                     """, unsafe_allow_html=True)
                                     
@@ -2465,7 +2465,7 @@ class ResumeApp:
                                             title={'text': "Resume Score", 'font': {'size': 16}},
                                             gauge={
                                                 'axis': {'range': [0, 100], 'tickwidth': 1},
-                                                'bar': {'color': "#4CAF50" if resume_score >= 80 else "#FFA500" if resume_score >= 60 else "#FF4444"},
+                                                'bar': {'color': "#00d4ff" if resume_score >= 80 else "#FFA500" if resume_score >= 60 else "#FF4444"},
                                                 'bgcolor': "white",
                                                 'borderwidth': 2,
                                                 'bordercolor': "gray",
@@ -2502,7 +2502,7 @@ class ResumeApp:
                                             title={'text': "ATS Optimization Score", 'font': {'size': 16}},
                                             gauge={
                                                 'axis': {'range': [0, 100], 'tickwidth': 1},
-                                                'bar': {'color': "#4CAF50" if ats_score >= 80 else "#FFA500" if ats_score >= 60 else "#FF4444"},
+                                                'bar': {'color': "#00d4ff" if ats_score >= 80 else "#FFA500" if ats_score >= 60 else "#FF4444"},
                                                 'bgcolor': "white",
                                                 'borderwidth': 2,
                                                 'bordercolor': "gray",
@@ -2556,7 +2556,7 @@ class ResumeApp:
                                                     title={'text': "Job Match Score", 'font': {'size': 16}},
                                                     gauge={
                                                         'axis': {'range': [0, 100], 'tickwidth': 1},
-                                                        'bar': {'color': "#4CAF50" if job_match_score >= 80 else "#FFA500" if job_match_score >= 60 else "#FF4444"},
+                                                        'bar': {'color': "#00d4ff" if job_match_score >= 80 else "#FFA500" if job_match_score >= 60 else "#FF4444"},
                                                         'bgcolor': "white",
                                                         'borderwidth': 2,
                                                         'bordercolor': "gray",
@@ -2787,7 +2787,7 @@ class ResumeApp:
                             import traceback as tb
                             st.code(tb.format_exc())
 
-        st.toast("Check out these repositories: [Awesome Java](https://github.com/Hunterdii/Awesome-Java)", icon="ℹ️")
+        st.toast("Check out these repositories: [Domain Management System](https://github.com/Arham43-ops/Domain-Management-System)", icon="ℹ️")
 
 
     def render_home(self):
@@ -2795,7 +2795,7 @@ class ResumeApp:
         
         # Hero Section
         hero_section(
-            "Smart Resume AI",
+            "ResumeIQ",
             "Transform your career with AI-powered resume analysis and building. Get personalized insights and create professional resumes that stand out."
         )
         
@@ -2822,7 +2822,7 @@ class ResumeApp:
         
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.toast("Check out these repositories: [AI-Nexus(AI/ML)](https://github.com/Hunterdii/AI-Nexus)", icon="ℹ️")
+        st.toast("Check out these repositories: [AsyncPrime Portfolio](https://github.com/Arham43-ops/AsyncPrime-Portfolio)", icon="ℹ️")
 
         # Call-to-Action with Streamlit navigation
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -2839,7 +2839,7 @@ class ResumeApp:
         """Render the job search page"""
         render_job_search()
 
-        st.toast("Check out these repositories: [GeeksforGeeks-POTD](https://github.com/Hunterdii/GeeksforGeeks-POTD)", icon="ℹ️")
+        st.toast("Check out these repositories: [Arham Portfolio](https://github.com/Arham43-ops/Arham-Portfolio)", icon="ℹ️")
 
 
     def render_feedback_page(self):
@@ -2864,36 +2864,36 @@ class ResumeApp:
         with stats_tab:
             feedback_manager.render_feedback_stats()
 
-        st.toast("Check out these repositories: [TryHackMe Free Rooms](https://github.com/Hunterdii/tryhackme-free-rooms)", icon="ℹ️")
+        st.toast("Check out these repositories: [Qr-Code Generator](https://github.com/Arham43-ops/Qr-Code-Generator)", icon="ℹ️")
 
 
-    def show_repo_notification(self):
-        message = """
-<div style="background-color: #1e1e1e; border-radius: 10px; border: 1px solid #4b6cb7; padding: 10px; margin: 10px 0; color: white;">
-    <div style="margin-bottom: 10px;">Check out these other repositories:</div>
-    <div style="margin-bottom: 5px;"><b>Hacking Resources:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/tryhackme-free-rooms" target="_blank" style="color: #4CAF50;">TryHackMe Free Rooms</a></li>
-        <li><a href="https://github.com/Hunterdii/Awesome-Hacking" target="_blank" style="color: #4CAF50;">Awesome Hacking</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Programming Languages:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/Awesome-Java" target="_blank" style="color: #4CAF50;">Awesome Java</a></li>
-        <li><a href="https://github.com/Hunterdii/30-Days-Of-Rust" target="_blank" style="color: #4CAF50;">30 Days Of Rust</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Data Structures & Algorithms:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/GeeksforGeeks-POTD" target="_blank" style="color: #4CAF50;">GeeksforGeeks POTD</a></li>
-        <li><a href="https://github.com/Hunterdii/Leetcode-POTD" target="_blank" style="color: #4CAF50;">Leetcode POTD</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>AI/ML Projects:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/AI-Nexus" target="_blank" style="color: #4CAF50;">AI Nexus</a></li>
-    </ul>
-    <div style="margin-top: 10px;">If you find this project helpful, please consider ⭐ starring the repo!</div>
-</div>
-"""
-        st.sidebar.markdown(message, unsafe_allow_html=True)
+#     def show_repo_notification(self):
+#         message = """
+# <div style="background-color: #1e1e1e; border-radius: 10px; border: 1px solid #4b6cb7; padding: 10px; margin: 10px 0; color: white;">
+#     <div style="margin-bottom: 10px;">Check out these other repositories:</div>
+#     <div style="margin-bottom: 5px;"><b>Hacking Resources:</b></div>
+#     <ul style="margin-top: 0; padding-left: 20px;">
+#         <li><a href="https://github.com/Hunterdii/tryhackme-free-rooms" target="_blank" style="color: #00d4ff;">TryHackMe Free Rooms</a></li>
+#         <li><a href="https://github.com/Hunterdii/Awesome-Hacking" target="_blank" style="color: #00d4ff;">Awesome Hacking</a></li>
+#     </ul>
+#     <div style="margin-bottom: 5px;"><b>Programming Languages:</b></div>
+#     <ul style="margin-top: 0; padding-left: 20px;">
+#         <li><a href="https://github.com/Hunterdii/Awesome-Java" target="_blank" style="color: #00d4ff;">Awesome Java</a></li>
+#         <li><a href="https://github.com/Hunterdii/30-Days-Of-Rust" target="_blank" style="color: #00d4ff;">30 Days Of Rust</a></li>
+#     </ul>
+#     <div style="margin-bottom: 5px;"><b>Data Structures & Algorithms:</b></div>
+#     <ul style="margin-top: 0; padding-left: 20px;">
+#         <li><a href="https://github.com/Hunterdii/GeeksforGeeks-POTD" target="_blank" style="color: #00d4ff;">GeeksforGeeks POTD</a></li>
+#         <li><a href="https://github.com/Hunterdii/Leetcode-POTD" target="_blank" style="color: #00d4ff;">Leetcode POTD</a></li>
+#     </ul>
+#     <div style="margin-bottom: 5px;"><b>AI/ML Projects:</b></div>
+#     <ul style="margin-top: 0; padding-left: 20px;">
+#         <li><a href="https://github.com/Hunterdii/AI-Nexus" target="_blank" style="color: #00d4ff;">ResumeIQ</a></li>
+#     </ul>
+#     <div style="margin-top: 10px;">If you find this project helpful, please consider ⭐ starring the repo!</div>
+# </div>
+# """
+#         st.sidebar.markdown(message, unsafe_allow_html=True)
 
 
     def main(self):
@@ -2903,7 +2903,7 @@ class ResumeApp:
         # Admin login/logout in sidebar
         with st.sidebar:
             st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
-            st.title("Smart Resume AI")
+            st.title("ResumeIQ")
             st.markdown("---")
             
             # Navigation buttons
@@ -2947,7 +2947,7 @@ class ResumeApp:
                                 st.error(f"Error during login: {str(e)}")
         
             # Display the repository notification in the sidebar
-            self.show_repo_notification()
+            # self.show_repo_notification()
 
         # Force home page on first load
         if 'initial_load' not in st.session_state:

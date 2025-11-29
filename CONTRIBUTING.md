@@ -1,6 +1,6 @@
-# Contributing to Smart AI Resume Analyzer
+# Contributing to ResumeIQ
 
-Thank you for your interest in contributing to Smart AI Resume Analyzer! 🎉
+Thank you for your interest in contributing to ResumeIQ! 🎉
 
 ## 🤝 How to Contribute
 

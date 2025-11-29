@@ -1,4 +1,4 @@
-# 🎯 Smart AI Resume Analyzer
+# 🎯 ResumeIQ
 
 <div align="center">
 
@@ -17,7 +17,7 @@
 
 ## 📋 Overview
 
-Smart AI Resume Analyzer is a powerful AI-driven platform that helps job seekers optimize their resumes for maximum impact. Built with cutting-edge AI technology, it provides comprehensive resume analysis, ATS compatibility scoring, and professional resume building capabilities.
+ResumeIQ is a powerful AI-driven platform that helps job seekers optimize their resumes for maximum impact. Built with cutting-edge AI technology, it provides comprehensive resume analysis, ATS compatibility scoring, and professional resume building capabilities.
 
 ## ✨ Features
 
@@ -174,9 +174,9 @@ LOG_LEVEL=INFO
 ## 📚 Documentation
 
 - [Quick Start Guide](QUICK_START.md) - Get started quickly
-- [AI Models Documentation](AI_MODELS.md) - Learn about AI features
-- [Deployment Guide](DEPLOYMENT.md) - Deploy to production
-- [Security Policy](SECURITY.md) - Security best practices
+- [AI Models Documentation](docs/AI_MODELS.md) - Learn about AI features
+- [Deployment Guide](docs/DEPLOYMENT.md) - Deploy to production
+- [Security Policy](docs/SECURITY.md) - Security best practices
 
 ## 🤝 Contributing
 
@@ -227,6 +227,6 @@ If you find this project helpful, please consider giving it a star! It helps oth
 
 **Made with ❤️ by Arham**
 
-[⬆ Back to Top](#-smart-ai-resume-analyzer)
+[⬆ Back to Top](#-resumeiq)
 
 </div>

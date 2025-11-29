@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Smart AI Resume Analyzer
+# 🚀 Quick Start Guide - ResumeIQ
 
 ## ✅ Setup Complete!
 
@@ -20,9 +20,9 @@ Your project is ready to run. Follow these final steps:
 1. Open the file: `utils\.env` in any text editor (Notepad, VS Code, etc.)
 2. Find this line:
    ```
-   GOOGLE_API_KEY=your_google_api_key_here
+   GOOGLE_API_KEY=your_google_gemini_api_key_here
    ```
-3. Replace `your_google_api_key_here` with your actual API key
+3. Replace `your_google_gemini_api_key_here` with your actual API key
 4. Save the file
 
 **Example:**
@@ -112,9 +112,9 @@ deactivate
 
 ## 📞 Need Help?
 
-- Check the full README: [README.md](file:///c:/Stuff/Projects/Smart-AI-Resume-Analyzer/README.md)
+- Check the full README: [README.md](README.md)
 - View setup walkthrough: See the walkthrough document
-- GitHub Issues: https://github.com/Hunterdii/Smart-AI-Resume-Analyzer/issues
+- GitHub Issues: https://github.com/Arham43-ops/AI_Resume_analyzer/issues
 
 ---
 

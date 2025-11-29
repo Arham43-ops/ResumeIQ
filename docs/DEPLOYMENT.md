@@ -1,11 +1,3 @@
-# Deployment Guide for Smart AI Resume Analyzer
-
-This guide provides instructions for deploying the Smart AI Resume Analyzer application in various environments, with a focus on resolving Chrome webdriver issues.
-
-## Local Deployment
-
-### Prerequisites
-- Python 3.7 or higher
 - Chrome browser installed
 - pip for installing dependencies
 
