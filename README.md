@@ -450,7 +450,7 @@ For more details, see our [Security Policy](docs/SECURITY.md)
 
 <div align="center">
 
-**Made with ❤️ by Notre Dame**
+**Made with ❤️ by Arham Topiwala**
 
 [⬆ Back to Top](#-resumeiq---smart-ai-resume-analyzer)
 
