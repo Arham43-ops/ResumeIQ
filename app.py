@@ -490,7 +490,7 @@ class ResumeApp:
             <p style='text-align: center;'>
                 Powered by <b>Streamlit</b> and <b>Google Gemini AI</b> | Developed by 
                 <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
-                    <b>Het Patel (Hunterdii)</b>
+                    <b>Arham Topiwala (Hunterdii)</b>
                 </a>
             </p>
             <p style='text-align: center; font-size: 12px; color: #888888;'>
@@ -2865,36 +2865,6 @@ class ResumeApp:
             feedback_manager.render_feedback_stats()
 
         st.toast("Check out these repositories: [Qr-Code Generator](https://github.com/Arham43-ops/Qr-Code-Generator)", icon="ℹ️")
-
-
-#     def show_repo_notification(self):
-#         message = """
-# <div style="background-color: #1e1e1e; border-radius: 10px; border: 1px solid #4b6cb7; padding: 10px; margin: 10px 0; color: white;">
-#     <div style="margin-bottom: 10px;">Check out these other repositories:</div>
-#     <div style="margin-bottom: 5px;"><b>Hacking Resources:</b></div>
-#     <ul style="margin-top: 0; padding-left: 20px;">
-#         <li><a href="https://github.com/Hunterdii/tryhackme-free-rooms" target="_blank" style="color: #00d4ff;">TryHackMe Free Rooms</a></li>
-#         <li><a href="https://github.com/Hunterdii/Awesome-Hacking" target="_blank" style="color: #00d4ff;">Awesome Hacking</a></li>
-#     </ul>
-#     <div style="margin-bottom: 5px;"><b>Programming Languages:</b></div>
-#     <ul style="margin-top: 0; padding-left: 20px;">
-#         <li><a href="https://github.com/Hunterdii/Awesome-Java" target="_blank" style="color: #00d4ff;">Awesome Java</a></li>
-#         <li><a href="https://github.com/Hunterdii/30-Days-Of-Rust" target="_blank" style="color: #00d4ff;">30 Days Of Rust</a></li>
-#     </ul>
-#     <div style="margin-bottom: 5px;"><b>Data Structures & Algorithms:</b></div>
-#     <ul style="margin-top: 0; padding-left: 20px;">
-#         <li><a href="https://github.com/Hunterdii/GeeksforGeeks-POTD" target="_blank" style="color: #00d4ff;">GeeksforGeeks POTD</a></li>
-#         <li><a href="https://github.com/Hunterdii/Leetcode-POTD" target="_blank" style="color: #00d4ff;">Leetcode POTD</a></li>
-#     </ul>
-#     <div style="margin-bottom: 5px;"><b>AI/ML Projects:</b></div>
-#     <ul style="margin-top: 0; padding-left: 20px;">
-#         <li><a href="https://github.com/Hunterdii/AI-Nexus" target="_blank" style="color: #00d4ff;">ResumeIQ</a></li>
-#     </ul>
-#     <div style="margin-top: 10px;">If you find this project helpful, please consider ⭐ starring the repo!</div>
-# </div>
-# """
-#         st.sidebar.markdown(message, unsafe_allow_html=True)
-
 
     def main(self):
         """Main application entry point"""
