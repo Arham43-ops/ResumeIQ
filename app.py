@@ -2787,7 +2787,7 @@ class ResumeApp:
                             import traceback as tb
                             st.code(tb.format_exc())
 
-        st.toast("Check out these repositories: [Domain Management System](https://github.com/Arham43-ops/Domain-Management-System)", icon="ℹ️")
+        st.toast("Check out these repositories: [DMS - JAVA](https://github.com/Arham43-ops/Domain-Management-System)", icon="ℹ️")
 
 
     def render_home(self):
