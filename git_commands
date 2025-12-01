@@ -1,0 +1,11 @@
+# 1. Check what files changed
+git status
+
+# 2. Add all changes
+git add .
+
+# 3. Commit with a message
+git commit -m "commit message"
+
+# 4. Push to your GitHub repo
+git push my-repo main
