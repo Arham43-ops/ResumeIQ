@@ -10,6 +10,7 @@ from ui_components import (
     page_header, render_analytics_section, render_activity_section,
     render_suggestions_section
 )
+from streamlit_option_menu import option_menu
 from feedback.feedback import FeedbackManager
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Inches, Pt
@@ -80,6 +81,9 @@ class ResumeApp:
 
         self.pages = {
             "🏠 HOME": self.render_home,
+            "🤖 AI ASSISTANT": self.render_ai_assistant,
+            "🪄 AI BUILDER (PRO)": self.render_interactive_builder,
+            "✍️ COVER LETTER": self.render_cover_letter,
             "🔍 RESUME ANALYZER": self.render_analyzer,
             "📝 RESUME BUILDER": self.render_builder,
             "📊 DASHBOARD": self.render_dashboard,
@@ -461,6 +465,38 @@ class ResumeApp:
                 padding: 0.8rem 1.6rem;
             }
         }
+
+        /* Premium Sidebar Styles */
+        section[data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #121212 0%, #1c1c1c 100%) !important;
+            border-right: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        section[data-testid="stSidebar"] .stMarkdown h1 {
+            color: #00d4ff !important;
+            font-size: 2.2rem !important;
+            font-weight: 700 !important;
+            letter-spacing: -1px !important;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            margin-bottom: 2rem !important;
+        }
+
+        .nav-link {
+            border-radius: 12px !important;
+            margin: 4px 0 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(0, 212, 255, 0.1) !important;
+            transform: translateX(5px) !important;
+        }
+
+        .nav-link-selected {
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.2) 0%, transparent 100%) !important;
+            border-left: 4px solid #00d4ff !important;
+            box-shadow: -10px 0 20px rgba(0, 212, 255, 0.1);
+        }
         </style>
         """, unsafe_allow_html=True)
         
@@ -488,9 +524,9 @@ class ResumeApp:
             # Footer text
             st.markdown("""
             <p style='text-align: center;'>
-                Powered by <b>Streamlit</b> and <b>Google Gemini AI</b> | Developed by 
-                <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
-                    <b>Arham Topiwala (AsyncPrime)</b>
+                Powered by <b>Streamlit</b> and <b>Groq Ai</b> | Developed by 
+                <a href="https://www.linkedin.com/in/arham43-ops/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
+                    <b>Arham43-ops</b>
                 </a>
             </p>
             <p style='text-align: center; font-size: 12px; color: #888888;'>
@@ -1217,8 +1253,8 @@ class ResumeApp:
                      alt="Arham Topiwala"
                      class="profile-image"
                      onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Arham43-ops';">
-                <h2 class="profile-name">Arham Topiwala(AsyncPrime)</h2>
-                <p class="profile-title">Web Designer | AI Enthusiast | Freelancer</p>
+                <h2 class="profile-name">Arham Topiwala</h2>
+                <p class="profile-title">Full Stack Web Developer | AI Enthusiast | Freelancer</p>
                 <div class="social-links">
                     <a href="https://github.com/Arham43-ops" class="social-link" target="_blank">
                         <i class="fab fa-github"></i>
@@ -2849,38 +2885,155 @@ class ResumeApp:
         st.toast("Check out these repositories: [DMS - JAVA](https://github.com/Arham43-ops/Domain-Management-System)", icon="ℹ️")
 
 
-    def render_home(self):
-        apply_modern_styles()
+    def render_ai_assistant(self):
+        """Render the AI Career Assistant page"""
+        st.title("🤖 AI Career Assistant")
+        st.write("Chat with our AI career coach powered by Groq's high-speed intelligence.")
+
+        # Initialize chat history
+        if "chat_messages" not in st.session_state:
+            st.session_state.chat_messages = []
+
+        # Display chat messages
+        for message in st.session_state.chat_messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+
+        # React to user input
+        if prompt := st.chat_input("Ask about resume tips, interviews, or career advice..."):
+            st.chat_message("user").markdown(prompt)
+            st.session_state.chat_messages.append({"role": "user", "content": prompt})
+
+            with st.chat_message("assistant"):
+                with st.spinner("Thinking..."):
+                    full_response = self.ai_analyzer.chat_with_ai(st.session_state.chat_messages)
+                    st.markdown(full_response)
+            
+            st.session_state.chat_messages.append({"role": "assistant", "content": full_response})
+
+    def render_cover_letter(self):
+        """Render the Cover Letter Writer page"""
+        st.title("✍️ AI Cover Letter Writer")
+        st.write("Generate a professional, tailored cover letter in seconds.")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Your Background")
+            use_existing = st.checkbox("Use my uploaded resume data")
+            if use_existing and st.session_state.get('resume_data'):
+                resume_text = st.session_state.resume_data['content']
+                st.info(f"Loaded: {st.session_state.resume_data['filename']}")
+            else:
+                resume_text = st.text_area("Paste your Resume or Professional Bio", height=250)
         
-        # Hero Section
+        with col2:
+            st.subheader("Target Opportunity")
+            job_role = st.text_input("Target Job Role", placeholder="e.g. Full Stack Developer")
+            job_desc = st.text_area("Job Description", height=180, placeholder="Paste the job requirements here...")
+
+        if st.button("Generate Cover Letter ✨", use_container_width=True):
+            if not resume_text or not job_desc or not job_role:
+                st.error("Please fill in all the details above.")
+            else:
+                with st.spinner("Crafting your cover letter..."):
+                    cover_letter = self.ai_analyzer.generate_cover_letter(resume_text, job_desc, job_role)
+                    st.divider()
+                    st.subheader("Generated Cover Letter")
+                    st.markdown(cover_letter)
+                    st.download_button(
+                        label="📥 Download Cover Letter",
+                        data=cover_letter,
+                        file_name=f"Cover_Letter_{job_role.replace(' ', '_')}.txt",
+                        mime="text/plain"
+                    )
+
+    def render_interactive_builder(self):
+        """Render the Conversational Resume Builder"""
+        st.title("🪄 Interactive AI Resume Builder")
+        st.info("💡 **Instructions**: Chat with the Resume Architect to build your profile. I will ask you questions one by one. Please stay focused on providing your career details.")
+
+        if "builder_chat_history" not in st.session_state:
+            st.session_state.builder_chat_history = [
+                {"role": "assistant", "content": "Welcome to ResumeIQ! I am your Professional Resume Architect. Let's build your standout resume together. To start, could you please tell me your **Full Name** and **Contact Information** (Email, Phone, Location)?"}
+            ]
+
+        # Main chat container with fixed height
+        chat_container = st.container(height=550)
+        with chat_container:
+            for message in st.session_state.builder_chat_history:
+                with st.chat_message(message["role"], avatar="🤖" if message["role"] == "assistant" else "👤"):
+                    st.markdown(message["content"])
+
+        if prompt := st.chat_input("Direct answer to the Architect's question..."):
+            st.session_state.builder_chat_history.append({"role": "user", "content": prompt})
+            with chat_container:
+                with st.chat_message("user", avatar="👤"):
+                    st.markdown(prompt)
+                
+                with st.chat_message("assistant", avatar="🤖"):
+                    with st.spinner("Resume Architect is thinking..."):
+                        # Use specialized builder chat method
+                        response = self.ai_analyzer.chat_with_resume_builder(st.session_state.builder_chat_history)
+                        st.markdown(response)
+            st.session_state.builder_chat_history.append({"role": "assistant", "content": response})
+
+        st.divider()
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            generate_btn = st.button("🚀 Finalize and Sync to Builder", use_container_width=True)
+        with col2:
+            reset_btn = st.button("🗑️ Reset Chat", use_container_width=True)
+            if reset_btn:
+                del st.session_state.builder_chat_history
+                st.rerun()
+
+        if generate_btn:
+            if len(st.session_state.builder_chat_history) < 3:
+                st.warning("Please provide more information before generating.")
+            else:
+                with st.spinner("Structuring your professional data..."):
+                    transcript = "\n".join([f"{m['role']}: {m['content']}" for m in st.session_state.builder_chat_history])
+                    structured_data = self.ai_analyzer.extract_structured_resume(transcript)
+                    if structured_data:
+                        # Deep update to avoid KeyError and preserve other data
+                        if "personal_info" in structured_data:
+                            st.session_state.form_data["personal_info"].update(structured_data["personal_info"])
+                        
+                        # Sync other sections if present
+                        for key in ["summary", "education", "experience", "projects", "skills_categories"]:
+                            if key in structured_data:
+                                st.session_state.form_data[key] = structured_data[key]
+
+                        st.success("✅ Success! Your profile is now populated. Head over to the 'RESUME BUILDER' to review and download.")
+                        if st.button("Review My Resume 📝"):
+                            st.session_state.page = 'resume_builder'
+                            st.rerun()
+                    else:
+                        st.error("Extraction failed. Please try chatting a bit more about your career.")
+
+    def render_home(self):
+        """Render the home page"""
         hero_section(
             "ResumeIQ",
-            "Transform your career with AI-powered resume analysis and building. Get personalized insights and create professional resumes that stand out."
+            "Your Intelligent Career Partner",
+            "Transform your career with Groq-powered AI analysis, conversational building, and tailored cover letters."
         )
         
-        # Features Section
-        st.markdown('<div class="feature-grid">', unsafe_allow_html=True)
+        st.markdown("### 🚀 Why Choose ResumeIQ?")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            feature_card("fa-bolt", "Lightning Fast", "Powered by Groq LPUs for instant AI analysis and generation.")
+        with col2:
+            feature_card("fa-shield-alt", "Secure & Private", "Your data stays yours. Local storage and encrypted keys.")
+        with col3:
+            feature_card("fa-award", "ATS Optimized", "Built to beat modern Applicant Tracking Systems.")
         
-        feature_card(
-            "fas fa-robot",
-            "AI-Powered Analysis",
-            "Get instant feedback on your resume with advanced AI analysis that identifies strengths and areas for improvement."
+        st.markdown("---")
+        about_section(
+            "About ResumeIQ",
+            "ResumeIQ is a state-of-the-art career platform designed to help job seekers optimize their resumes, prepare for interviews, and build professional cover letters using the latest in AI technology."
         )
-        
-        feature_card(
-            "fas fa-magic",
-            "Smart Resume Builder",
-            "Create professional resumes with our intelligent builder that suggests optimal content and formatting."
-        )
-        
-        feature_card(
-            "fas fa-chart-line",
-            "Career Insights",
-            "Access detailed analytics and personalized recommendations to enhance your career prospects."
-        )
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-        
+
         st.toast("Check out these repositories: [AsyncPrime Portfolio](https://github.com/Arham43-ops/AsyncPrime-Portfolio)", icon="ℹ️")
 
         # Call-to-Action with Streamlit navigation
@@ -2903,50 +3056,73 @@ class ResumeApp:
 
     def render_feedback_page(self):
         """Render the feedback page"""
-        apply_modern_styles()
-        
-        # Page Header
-        page_header(
-            "Feedback & Suggestions",
-            "Help us improve by sharing your thoughts"
-        )
-        
-        # Initialize feedback manager
-        feedback_manager = FeedbackManager()
-        
-        # Create tabs for form and stats
-        form_tab, stats_tab = st.tabs(["Submit Feedback", "Feedback Stats"])
-        
-        with form_tab:
-            feedback_manager.render_feedback_form()
-            
-        with stats_tab:
-            feedback_manager.render_feedback_stats()
+        st.title("💬 Feedback")
+        st.write("We'd love to hear from you!")
 
-        st.toast("Check out these repositories: [Qr-Code Generator](https://github.com/Arham43-ops/Qr-Code-Generator)", icon="ℹ️")
+        manager = FeedbackManager()
+        manager.render_feedback_form()
+
+        st.toast("Check out these repositories: [Attendance Automation](https://github.com/Arham43-ops/Attendance-Automation)", icon="ℹ️")
 
     def main(self):
         """Main application entry point"""
+        # Apply global styles
         self.apply_global_styles()
-        
-        # Admin login/logout in sidebar
+
+        # Sidebar navigation
         with st.sidebar:
-            st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
-            st.title("ResumeIQ")
+            # Premium Header with Glassmorphism
+            st.markdown("""
+                <div style='background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);'>
+                    <h1 style='margin: 0; color: #00d4ff; font-size: 1.8rem; letter-spacing: -1px;'>Resume<span style='color: white;'>IQ</span></h1>
+                    <p style='margin: 5px 0 0 0; color: #888; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;'>AI Career Architect</p>
+                </div>
+            """, unsafe_allow_html=True)
+
+            # Sidebar Animation with Fallback
+            lottie_url = "https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"
+            lottie_json = self.load_lottie_url(lottie_url)
+            if lottie_json:
+                st_lottie(lottie_json, height=150, key="sidebar_animation")
+            else:
+                st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+            
+            # Professional Navigation using option_menu
+            page_list = list(self.pages.keys())
+            icon_list = ["house", "robot", "magic", "envelope", "search", "file-earmark-text", "kanban", "briefcase", "chat", "info-circle"]
+            
+            # Find current index for defaults
+            current_page_name = st.session_state.get('page_name', "🏠 HOME")
+            try:
+                default_index = page_list.index(current_page_name)
+            except ValueError:
+                default_index = 0
+
+            selected_page = option_menu(
+                menu_title=None,
+                options=page_list,
+                icons=icon_list,
+                menu_icon="cast",
+                default_index=default_index,
+                styles={
+                    "container": {"padding": "0!important", "background-color": "transparent"},
+                    "icon": {"color": "#00d4ff", "font-size": "16px"}, 
+                    "nav-link": {"font-size": "14px", "text-align": "left", "margin":"4px", "--hover-color": "rgba(0, 212, 255, 0.1)", "color": "#ccc"},
+                    "nav-link-selected": {"background": "linear-gradient(90deg, rgba(0, 212, 255, 0.1) 0%, transparent 100%)", "border-left": "3px solid #00d4ff", "color": "#00d4ff", "font-weight": "600"},
+                }
+            )
+
+            # Update session state
+            if selected_page != st.session_state.get('page_name'):
+                st.session_state.page_name = selected_page
+                # Clean ID for the renderer
+                page_id = "".join([c for c in selected_page if c.isalnum() or c == ' ']).strip().lower().replace(" ", "_")
+                st.session_state.page = page_id
+                st.rerun()
+
             st.markdown("---")
             
-            # Navigation buttons
-            for page_name in self.pages.keys():
-                if st.button(page_name, use_container_width=True):
-                    cleaned_name = page_name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("💬", "").replace("ℹ️", "").strip()
-                    st.session_state.page = cleaned_name
-                    st.rerun()
-
-            # Add some space before admin login
-            st.markdown("<br><br>", unsafe_allow_html=True)
-            st.markdown("---")
-
-            # Admin Login/Logout section at bottom
+            # Admin login section
             if st.session_state.get('is_admin', False):
                 st.success(f"Logged in as: {st.session_state.get('current_admin_email')}")
                 if st.button("Logout", key="logout_button"):
@@ -2975,27 +3151,26 @@ class ResumeApp:
                             except Exception as e:
                                 st.error(f"Error during login: {str(e)}")
         
-            # Display the repository notification in the sidebar
-            # self.show_repo_notification()
-
-        # Force home page on first load
-        if 'initial_load' not in st.session_state:
-            st.session_state.initial_load = True
+        # Initial load logic - only if no page set
+        if 'page' not in st.session_state:
             st.session_state.page = 'home'
-            st.rerun()
+            st.session_state.page_name = '🏠 HOME'
         
         # Get current page and render it
-        current_page = st.session_state.get('page', 'home')
+        current_page_id = st.session_state.get('page', 'home')
         
         # Create a mapping of cleaned page names to original names
-        page_mapping = {name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("💬", "").replace("ℹ️", "").strip(): name 
-                       for name in self.pages.keys()}
+        page_mapping = {}
+        for name in self.pages.keys():
+            # Robust cleaning: keep only alphanumeric and spaces, then snake_case
+            clean_id = "".join([c for c in name if c.isalnum() or c == ' ']).strip().lower().replace(" ", "_")
+            page_mapping[clean_id] = name
         
         # Render the appropriate page
-        if current_page in page_mapping:
-            self.pages[page_mapping[current_page]]()
+        if current_page_id in page_mapping:
+            self.pages[page_mapping[current_page_id]]()
         else:
-            # Default to home page if invalid page
+            # Fallback if mapping fails
             self.render_home()
     
         # Add footer to every page

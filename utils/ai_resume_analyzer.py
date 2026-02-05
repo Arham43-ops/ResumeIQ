@@ -281,7 +281,134 @@ class AIResumeAnalyzer:
         except Exception as e:
             return {"error": f"Analysis failed: {str(e)}"}
 
-    
+    def chat_with_ai(self, messages):
+        """Handle general career chat using Groq"""
+        if not self.groq_api_key:
+            return "Groq API key is not configured."
+        
+        try:
+            system_message = {"role": "system", "content": "You are ResumeIQ's Career Assistant. You help users with resume tips, interview prep, career advice, and navigating the ResumeIQ platform. Be professional, encouraging, and concise. Always use lightning-fast Groq intelligence to answer."}
+            
+            all_messages = [system_message] + messages
+            
+            response = self.client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=all_messages,
+                temperature=0.7
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            return f"Chat error: {str(e)}"
+
+    def chat_with_resume_builder(self, messages):
+        """Specialized chat for Resume Building - stays focused and asks one by one"""
+        if not self.groq_api_key:
+            return "Groq API key is not configured."
+        
+        try:
+            system_message = {
+                "role": "system", 
+                "content": """You are ResumeIQ's Professional Resume Architect.
+                Your ONLY goal is to collect information to build a high-quality resume.
+                
+                STRICT RULES:
+                1. DO NOT answer general questions (e.g., 'what is the capital of France?'). If the user asks anything outside of resume building, politely redirect them back to the resume.
+                2. Ask for details ONE BY ONE. Do not overwhelm the user.
+                3. Order of collection: Full Name & Contact -> Professional Summary -> Education -> Work Experience -> Projects -> Skills.
+                4. Provide brief, professional suggestions for each section as you collect it.
+                5. Be extremely focused, professional, and concise.
+                
+                Start by introducing yourself as the Resume Architect and ask for their Full Name and Contact details if they haven't provided them."""
+            }
+            
+            all_messages = [system_message] + messages
+            
+            response = self.client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=all_messages,
+                temperature=0.4 # Lower temperature for more focused output
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            return f"Builder chat error: {str(e)}"
+
+    def generate_cover_letter(self, resume_text, job_description, job_role):
+        """Generate a tailored cover letter using Groq"""
+        if not self.groq_api_key:
+            return "Groq API key is not configured."
+        
+        try:
+            prompt = f"""
+            Write a professional and compelling cover letter based on the following information:
+            
+            Target Role: {job_role}
+            
+            Job Description:
+            {job_description}
+            
+            Resume Content:
+            {resume_text}
+            
+            The cover letter should:
+            1. Be tailored specifically to the job description.
+            2. Highlight the most relevant experiences and skills from the resume.
+            3. Have a professional and enthusiastic tone.
+            4. Follow standard cover letter formatting.
+            5. Be concise (around 300-400 words).
+            """
+            
+            response = self.client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": "You are an expert career consultant and professional writer."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            return f"Cover letter generation failed: {str(e)}"
+
+    def extract_structured_resume(self, chat_history):
+        """Convert a conversation history into structured resume data"""
+        if not self.groq_api_key:
+            return None
+        
+        try:
+            # Import json here as it's only needed for this specific function
+            import json
+            
+            prompt = f"""
+            Based on the following conversation where a user provided their professional details, extract and structure the information into a JSON format suitable for a resume.
+            
+            Conversation:
+            {chat_history}
+            
+            Return ONLY a JSON object with this structure (use these EXACT keys):
+            {{
+                "personal_info": {{
+                    "full_name": "...", "email": "...", "phone": "...", "location": "...", "linkedin": "...", "github": "...", "portfolio": "..."
+                }},
+                "summary": "...",
+                "education": [{{ "degree": "...", "institution": "...", "year": "...", "details": "..." }}],
+                "experience": [{{ "role": "...", "company": "...", "duration": "...", "description": ["...", "..."] }}],
+                "projects": [{{ "name": "...", "description": "...", "link": "..." }}],
+                "skills_categories": {{ "technical": ["..."], "soft": ["..."], "tools": ["..."], "languages": ["..."] }}
+            }}
+            """
+            
+            response = self.client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": "You are a precise data extraction specialist. Output ONLY valid JSON."},
+                    {"role": "user", "content": prompt}
+                ],
+                response_format={ "type": "json_object" }
+            )
+            return json.loads(response.choices[0].message.content)
+        except Exception as e:
+            print(f"Extraction error: {str(e)}")
+            return None
+
     def generate_pdf_report(self, analysis_result, candidate_name, job_role):
         """Generate a PDF report of the analysis"""
         try:
