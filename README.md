@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/render?type=soft&color=auto&height=200&section=header&text=ResumeIQ&fontSize=90&animation=fadeIn&fontAlignY=38" width="100%" />
+![ResumeIQ Banner](https://capsule-render.vercel.app/render?type=waving&color=00d4ff&height=200&section=header&text=ResumeIQ&fontSize=90&fontAlignY=35)
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg?style=for-the-badge&logo=streamlit)](https://streamlit.io/)
