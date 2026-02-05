@@ -89,8 +89,11 @@ geckodriver.exe
 Thumbs.db
 desktop.ini
 
-# Large files
+# Project Dependencies / Binaries
+poppler/
 poppler.zip
+
+# Large files
 *.zip
 *.tar.gz
 
