@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from dotenv import load_dotenv
-import google.generativeai as genai
+from groq import Groq
 import pdfplumber
 from pdf2image import convert_from_path
 import pytesseract
@@ -17,12 +17,12 @@ class AIResumeAnalyzer:
         # Load environment variables
         load_dotenv()
         
-        # Configure Google Gemini AI
-        self.google_api_key = os.getenv("GOOGLE_API_KEY")
+        # Configure Groq AI
+        self.groq_api_key = os.getenv("GROQ_API_KEY")
         self.openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
         
-        if self.google_api_key:
-            genai.configure(api_key=self.google_api_key)
+        if self.groq_api_key:
+            self.client = Groq(api_key=self.groq_api_key)
     
     def extract_text_from_pdf(self, pdf_file):
         """Extract text from PDF using pdfplumber and OCR if needed"""
@@ -181,16 +181,16 @@ class AIResumeAnalyzer:
         os.unlink(temp_path)  # Clean up the temp file
         return text
     
-    def analyze_resume_with_gemini(self, resume_text, job_description=None, job_role=None):
-        """Analyze resume using Google Gemini AI"""
+    def analyze_resume_with_groq(self, resume_text, job_description=None, job_role=None):
+        """Analyze resume using Groq AI"""
         if not resume_text:
             return {"error": "Resume text is required for analysis."}
         
-        if not self.google_api_key:
-            return {"error": "Google API key is not configured. Please add it to your .env file."}
+        if not self.groq_api_key:
+            return {"error": "Groq API key is not configured. Please add it to your .env file."}
         
         try:
-            model = genai.GenerativeModel("gemini-2.5-flash")
+            # Using llama-3.3-70b-versatile for high quality analysis
             
             base_prompt = f"""
             You are an expert resume analyst with deep knowledge of industry standards, job requirements, and hiring practices across various fields. Your task is to provide a comprehensive, detailed analysis of the resume provided.
@@ -257,8 +257,14 @@ class AIResumeAnalyzer:
                 [List specific requirements from the job description that are not addressed in the resume, with recommendations on how to address each gap]
                 """
             
-            response = model.generate_content(base_prompt)
-            analysis = response.text.strip()
+            response = self.client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": "You are an expert resume analyst."},
+                    {"role": "user", "content": base_prompt}
+                ]
+            )
+            analysis = response.choices[0].message.content.strip()
             
             # Extract resume score if present
             resume_score = self._extract_score_from_text(analysis)
@@ -1187,7 +1193,7 @@ class AIResumeAnalyzer:
             print(f"Error extracting ATS score: {str(e)}")
             return 0
             
-    def analyze_resume(self, resume_text, job_role=None, role_info=None, model="Google Gemini"):
+    def analyze_resume(self, resume_text, job_role=None, role_info=None, model="Groq AI"):
         """
         Analyze a resume using the specified AI model
         
@@ -1195,7 +1201,7 @@ class AIResumeAnalyzer:
         - resume_text: The text content of the resume
         - job_role: The target job role
         - role_info: Additional information about the job role
-        - model: The AI model to use ("Google Gemini" or "Anthropic Claude")
+        - model: The AI model to use ("Groq AI" or "Anthropic Claude")
         
         Returns:
         - Dictionary containing analysis results
@@ -1212,17 +1218,17 @@ class AIResumeAnalyzer:
                 """
             
             # Choose the appropriate model for analysis
-            if model == "Google Gemini":
-                result = self.analyze_resume_with_gemini(resume_text, job_description, job_role)
-                model_used = "Google Gemini"
+            if model == "Groq AI":
+                result = self.analyze_resume_with_groq(resume_text, job_description, job_role)
+                model_used = "Groq AI"
             elif model == "Anthropic Claude":
                 result = self.analyze_resume_with_anthropic(resume_text, job_description, job_role)
                 # Get the actual model used from the result
                 model_used = result.get("model_used", "Anthropic Claude")
             else:
-                # Default to Gemini if model not recognized
-                result = self.analyze_resume_with_gemini(resume_text, job_description, job_role)
-                model_used = "Google Gemini"
+                # Default to Groq if model not recognized
+                result = self.analyze_resume_with_groq(resume_text, job_description, job_role)
+                model_used = "Groq AI"
             
             # Process the result to extract structured information
             analysis_text = result.get("analysis", "")

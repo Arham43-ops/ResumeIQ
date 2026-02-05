@@ -1732,7 +1732,7 @@ class ResumeApp:
             # AI Model Selection
             ai_model = st.selectbox(
                 "Select AI Model",
-                ["Google Gemini"],
+                ["Groq AI"],
                 help="Choose the AI model to analyze your resume"
             )
              
@@ -2240,7 +2240,7 @@ class ResumeApp:
                                 letter-spacing: 0.5px;
                                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                             }
-                            .model-gemini {
+                            .model-groq {
                                 background: linear-gradient(135deg, #4e54c8, #8f94fb);
                                 color: white;
                             }
@@ -2307,7 +2307,7 @@ class ResumeApp:
 
                                 # Determine model class
                                 model_name = analysis["model"]
-                                model_class = "model-gemini" if "Gemini" in model_name else "model-claude" if "Claude" in model_name else ""
+                                model_class = "model-groq" if "Groq" in model_name else "model-claude" if "Claude" in model_name else ""
 
                                 # Format the date
                                 try:
@@ -2407,7 +2407,7 @@ class ResumeApp:
                                 progress_bar = st.progress(0)
                                 
                                 # Get the selected model
-                                selected_model = "Google Gemini"
+                                selected_model = "Groq AI"
                                 
                                 # Update progress
                                 progress_bar.progress(10)
@@ -2433,16 +2433,16 @@ class ResumeApp:
                                 # Update progress
                                 progress_bar.progress(50)
                                 
-                                # Analyze the resume with Google Gemini
+                                # Analyze the resume with Groq
                                 if use_custom_job_desc and custom_job_description:
                                     # Use custom job description for analysis
-                                    analysis_result = analyzer.analyze_resume_with_gemini(
+                                    analysis_result = analyzer.analyze_resume_with_groq(
                                         resume_text, job_role=job_role, job_description=custom_job_description)
                                     # Show that custom job description was used
                                     st.session_state['used_custom_job_desc'] = True
                                 else:
                                     # Use standard role-based analysis
-                                    analysis_result = analyzer.analyze_resume_with_gemini(
+                                    analysis_result = analyzer.analyze_resume_with_groq(
                                         resume_text, job_role=job_role)
                                     st.session_state['used_custom_job_desc'] = False
 

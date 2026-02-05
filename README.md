@@ -6,7 +6,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Status](https://img.shields.io/badge/Status-Active-success.svg)
-![AI](https://img.shields.io/badge/AI-Google%20Gemini-orange.svg)
+![AI](https://img.shields.io/badge/AI-Groq%20AI-orange.svg)
 
 **Your Intelligent Career Partner - Analyze, Optimize, and Build Professional Resumes with AI**
 
@@ -18,7 +18,7 @@
 
 ## 📋 Overview
 
-**ResumeIQ** is a cutting-edge AI-powered platform designed to help job seekers create, analyze, and optimize their resumes for maximum impact. Built with Google Gemini AI and advanced Natural Language Processing, ResumeIQ provides comprehensive resume analysis, ATS compatibility scoring, intelligent keyword recommendations, and professional resume building capabilities.
+**ResumeIQ** is a cutting-edge AI-powered platform designed to help job seekers create, analyze, and optimize their resumes for maximum impact. Built with Groq AI and advanced Natural Language Processing, ResumeIQ provides comprehensive resume analysis, ATS compatibility scoring, intelligent keyword recommendations, and professional resume building capabilities.
 
 Whether you're a fresh graduate, experienced professional, or career changer, ResumeIQ helps you stand out in today's competitive job market by ensuring your resume passes Applicant Tracking Systems (ATS) and catches recruiters' attention.
 
@@ -74,7 +74,7 @@ Whether you're a fresh graduate, experienced professional, or career changer, Re
 ### Prerequisites
 - **Python 3.11 or higher** - [Download Python](https://www.python.org/downloads/)
 - **Git** - [Download Git](https://git-scm.com/downloads)
-- **Google Gemini API Key** - [Get API Key](https://aistudio.google.com/app/apikey)
+- **Groq API Key** - [Get API Key](https://console.groq.com/keys)
 
 ### Quick Setup
 
